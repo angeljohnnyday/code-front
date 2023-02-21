@@ -1,10 +1,14 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Container } from '@mui/material'
-import { BlogDetail, Blogs } from "src/pages";
+import { BlogDetail, Blogs, EditorPage } from "src/pages";
 
 export default function AppRoute() {
     return (
-        <Container sx={{ mt: '2.8rem' }}>
+        <Container
+            sx={{
+                mt: '2.8rem'
+            }}
+        >
             <BrowserRouter>
                 <Routes>
                     <Route
@@ -14,9 +18,15 @@ export default function AppRoute() {
                         }
                     />
                     <Route
-                        path='/blogs/:id'
+                        path='/blog/:id'
                         element={
                             <BlogDetail />
+                        }
+                    />
+                    <Route
+                        path='/editor'
+                        element={
+                            <EditorPage />
                         }
                     />
                     <Route

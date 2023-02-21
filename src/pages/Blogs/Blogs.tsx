@@ -1,4 +1,6 @@
 import {
+    Avatar,
+    Box,
     Card,
     CardActionArea,
     CardContent,
@@ -18,77 +20,46 @@ export default function Blogs() {
                         <CardMedia
                             sx={{ height: 200 }}
                             image='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-                            title="green iguana"
                         />
                         <CardContent>
                             <Typography
                                 gutterBottom
                                 variant="h6"
-                                component="div"
+                                sx={{ color: '#273746' }}
                             >
-                                Lizard
+                                The Rise of Artificial Intelligence and the Future of Humans
                             </Typography>
-                            <Typography
-                                variant="body2"
-                                color="text.secondary"
+                            <Box
+                                mt='1.6rem'
+                                display='flex'
+                                alignItems='center'
                             >
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Col>
-            <Col xs={12} lg={4}>
-                <Card>
-                    <CardActionArea>
-                        <CardMedia
-                            sx={{ height: 200 }}
-                            image='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-                            title="green iguana"
-                        />
-                        <CardContent>
-                            <Typography
-                                gutterBottom
-                                variant="h6"
-                                component="div"
-                            >
-                                Lizard
-                            </Typography>
-                            <Typography
-                                variant="body2"
-                                color="text.secondary"
-                            >
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Col>
-            <Col xs={12} lg={4}>
-                <Card>
-                    <CardActionArea>
-                        <CardMedia
-                            sx={{ height: 200 }}
-                            image='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-                            title="green iguana"
-                        />
-                        <CardContent>
-                            <Typography
-                                gutterBottom
-                                variant="h6"
-                                component="div"
-                            >
-                                Lizard
-                            </Typography>
-                            <Typography
-                                variant="body2"
-                                color="text.secondary"
-                            >
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography>
+                                <Box mr='01.2rem'>
+                                    <Avatar
+                                        alt="Remy Sharp"
+                                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                                    />
+                                </Box>
+                                <Box flexGrow={1}>
+                                    <Box
+                                        display='flex'
+                                        justifyContent='space-around'
+                                    >
+                                        <Typography
+                                            variant="overline"
+                                            sx={{ color: '#424949' }}
+                                        >
+                                            Angel Perez
+                                        </Typography>
+                                        <Typography
+                                            variant="overline"
+                                            sx={{ color: '#424949' }}
+                                        >
+                                            22/10/2022
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                            </Box>
                         </CardContent>
                     </CardActionArea>
                 </Card>
