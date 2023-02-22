@@ -9,8 +9,8 @@ export default function Row({ children, ...rest }: Props) {
             container
             columnSpacing='2.4rem'
             rowGap={{
-                xs: '2.4rem',
-                lg: '3.2rem'
+                xs: '1.6rem',
+                lg: '2.4rem'
             }}
             {...rest}
         >

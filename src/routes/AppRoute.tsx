@@ -6,7 +6,8 @@ export default function AppRoute() {
     return (
         <Container
             sx={{
-                mt: '2.8rem'
+                mt: '2.8rem',
+                pb: '3.2rem'
             }}
         >
             <BrowserRouter>

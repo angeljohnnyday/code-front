@@ -4,7 +4,6 @@ import {
     Box,
     Card,
     CardHeader,
-    Stack,
     Typography,
 } from '@mui/material'
 import {
@@ -15,7 +14,6 @@ import {
 export default function BlogDetail() {
     return (
         <>
-
             <Box
                 display='flex'
                 flexDirection='column'
@@ -30,7 +28,6 @@ export default function BlogDetail() {
                     lg: '16rem'
                 }}
             >
-
                 <Typography variant="h4" >
                     The Rise of Artificial Intelligence and the Future of Humans
                 </Typography>
@@ -54,7 +51,7 @@ export default function BlogDetail() {
             <Row
                 mt={{
                     xs: '2.4rem',
-                    lg: '3.2rem'
+                    lg: '2.8rem'
                 }}
             >
                 <Col xs={12}>
@@ -62,6 +59,7 @@ export default function BlogDetail() {
                         component='img'
                         src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
                         sx={{
+                            borderRadius: '0.8rem',
                             width: '100%',
                             height: {
                                 xs: '12rem',
