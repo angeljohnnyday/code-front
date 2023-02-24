@@ -7,10 +7,10 @@ export default function Row({ children, ...rest }: Props) {
     return (
         <Grid
             container
-            columnSpacing='2.4rem'
+            columnSpacing='1.2rem'
             rowGap={{
                 xs: '1.6rem',
-                lg: '2.4rem'
+                lg: '2rem'
             }}
             {...rest}
         >

@@ -18,12 +18,10 @@ interface Props extends Omit<DialogProps, 'title' | 'onClose'> {
     onClose: {
         handle: () => void
         title?: ReactNode
-        sx?: SxProps
     }
     onOk?: {
         handle: () => void
         title?: ReactNode
-        sx?: SxProps
     }
 }
 
@@ -39,7 +37,7 @@ export default function Modal({
 }: Props) {
     return (
         <Dialog
-            fullWidth
+            fullScreen
             maxWidth={maxWidth}
             open={open}
             onClose={({ }, reason) => reason === 'backdropClick' && onClose.handle}
@@ -57,23 +55,22 @@ export default function Modal({
             </DialogContent>
             <DialogActions
                 sx={{
-                    px: '2.4rem',
-                    pb: '2.4rem',
+                    px: '1.2rem',
+                    pb: '1.2rem',
                 }}
             >
                 <Button
                     color="error"
                     onClick={onClose.handle}
-                    sx={{
-                        mr: '2.4rem',
-                        ...onClose?.sx
-                    }}
                 >
-                    {onClose?.title || 'Cancel'}
+                    {onClose?.title || 'Cancelar'}
                 </Button>
                 {!!onOk && (
                     <Button
                         onClick={onOk.handle}
+                        sx={{
+                            ml: '1.2rem',
+                        }}
                     >
                         {onOk?.title || 'Ok'}
                     </Button>
