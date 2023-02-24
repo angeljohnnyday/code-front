@@ -22,12 +22,12 @@ export default function Blogs() {
     const navigate = useNavigate();
     const [blogs, setBlogs] = useState<BlogModel[]>([]);
     const [pageable, setPageable] = useState<PageableType>({ page: 0, size: 3 })
-    const { data, isFetching, isSuccess } = useBlogs(pageable);
+    const { data, isFetching, isSuccess, isFetched } = useBlogs(pageable);
 
     const showButton = useMemo(() => {
         if (!data?.totalItems) return false;
-        return data?.totalItems > blogs.length
-    }, [data, blogs])
+        return (data?.totalItems > blogs.length && isFetched)
+    }, [data, blogs, isFetched])
 
     const handleMore = () => {
         setPageable(({ size, page }) => ({ size, page: page + 1 }))
@@ -44,7 +44,7 @@ export default function Blogs() {
     return (
         <>
             <Row>
-                {data?.totalItems === 0 && (
+                {(data?.totalItems === 0 && isFetched) && (
                     <Box
                         mx='auto'
                         display='flex'
