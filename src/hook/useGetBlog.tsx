@@ -3,7 +3,7 @@ import api from 'src/helpers/axios-cliente';
 import { BlogModel } from "src/types/blogType";
 
 const fetch = async (uuid?: string) => {
-    const response = await api.get<BlogModel>(`/blog/${uuid}`);
+    const response = await api.get<BlogModel>(`/${uuid}`);
     return response.data;
 }
 

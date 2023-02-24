@@ -4,7 +4,6 @@ import {
     Route,
     Routes
 } from "react-router-dom";
-import { Container } from '@mui/material'
 import {
     BlogDetail,
     Blogs,

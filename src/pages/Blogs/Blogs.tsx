@@ -20,10 +20,9 @@ import { BlogModel } from 'src/types/blogType';
 
 export default function Blogs() {
     const navigate = useNavigate();
-    const [enabled, setEnabled] = useState(false);
     const [blogs, setBlogs] = useState<BlogModel[]>([]);
     const [pageable, setPageable] = useState<PageableType>({ page: 0, size: 3 })
-    const { data, isSuccess } = useBlogs(pageable, enabled);
+    const { data, isFetching, isSuccess } = useBlogs(pageable);
 
     const showButton = useMemo(() => {
         if (!data?.totalItems) return false;
@@ -35,16 +34,15 @@ export default function Blogs() {
     }
 
     useEffect(() => {
-        if (!!data && isSuccess) setBlogs((blogList) => ([...blogList, ...data.list]))
-    }, [data])
+        if (!!data && isSuccess && !isFetching) setBlogs((blogList) => ([...blogList, ...data.list]))
+    }, [data, isSuccess, isFetching])
 
     useEffect(() => {
-        setEnabled(true)
-    }, [setEnabled])
+        if (isFetching) setBlogs([])
+    }, [isFetching, setBlogs])
 
     return (
         <>
-
             <Row>
                 {data?.totalItems === 0 && (
                     <Box

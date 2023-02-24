@@ -10,7 +10,8 @@ export interface BlogModel {
     updateAt?: Date;
 }
 
-export interface BlogCreation extends Pick<BlogModel, 'title' | 'body'> {
-    img: string;
+export interface BlogCreation extends Pick<BlogModel, 'title' | 'body' | 'img'> {
     author: Omit<AuthorModel, 'authorId'>
 }
+
+export interface BlogUpdate extends Pick<BlogModel, 'title' | 'body' | 'img'> { }

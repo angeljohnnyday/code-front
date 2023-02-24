@@ -40,7 +40,7 @@ export default function Modal({
             fullScreen
             maxWidth={maxWidth}
             open={open}
-            onClose={({ }, reason) => reason === 'backdropClick' && onClose.handle}
+            onClose={(_, reason) => reason === 'backdropClick' && onClose.handle}
             {...rest}
         >
             {!!title && (

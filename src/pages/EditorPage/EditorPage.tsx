@@ -21,6 +21,7 @@ import {
 } from 'src/components'
 import useBlogCreate from 'src/hook/useBlogCreate';
 import useGetBlog from 'src/hook/useGetBlog';
+import useBlogUpdate from 'src/hook/useBlogUpdate';
 import { formatters, validations } from 'src/helpers/generic';
 import 'react-quill/dist/quill.snow.css';
 
@@ -31,7 +32,7 @@ const maxNameAndLast = 15;
 export default function EditorPage() {
     const { blogId } = useParams();
     const navigate = useNavigate();
-    const { data: blog } = useGetBlog(blogId);
+    const { data: blog, isFetched } = useGetBlog(blogId);
     const [open, setOpen] = useState(false);
     const [data, setData] = useState({
         blogImg: '',
@@ -44,9 +45,15 @@ export default function EditorPage() {
 
     const {
         isSuccess,
-        data: savedBlog,
+        data: createdBlog,
         mutate: create,
     } = useBlogCreate();
+
+    const {
+        isSuccess: isUpdatedSuccess,
+        data: updatedBlog,
+        mutate: update,
+    } = useBlogUpdate();
 
     const [openFileBlog, { filesContent: filesContentBlog }] = useFilePicker({
         accept: '.png',
@@ -66,21 +73,32 @@ export default function EditorPage() {
     }
 
     const handleCardAuthor = () => {
-        openFileAuthor();
+        if (!blog) openFileAuthor();
     }
 
     const handleButton = () => {
         const { blogImg, authorImg, title, body, name, lastName } = data;
-        create({
-            img: blogImg,
-            title,
-            body,
-            author: {
-                name,
-                lastName,
-                img: authorImg
-            },
-        })
+        if (!blog) {
+            create({
+                title,
+                body,
+                img: blogImg,
+                author: {
+                    name,
+                    lastName,
+                    img: authorImg
+                },
+            })
+        } else {
+            update({
+                blogId: blog.blogId,
+                data: {
+                    body,
+                    title,
+                    img: blogImg
+                }
+            })
+        }
     }
 
     const isCompleted = useMemo(() => {
@@ -138,8 +156,16 @@ export default function EditorPage() {
     }, [blog, setData]);
 
     useEffect(() => {
-        if (isSuccess && !!savedBlog) navigate(`/blog/${savedBlog.blogId}`)
-    }, [isSuccess, savedBlog])
+        if (isSuccess && !!createdBlog) navigate(`/blog/${createdBlog.blogId}`)
+    }, [isSuccess, createdBlog, navigate])
+
+    useEffect(() => {
+        if (isUpdatedSuccess && !!updatedBlog) navigate(`/blog/${updatedBlog.blogId}`)
+    }, [isUpdatedSuccess, updatedBlog, navigate])
+
+    useEffect(() => {
+        if (isFetched && !blog) navigate('/editor');
+    }, [isFetched, blog, navigate])
 
     return (
         <>
@@ -221,9 +247,12 @@ export default function EditorPage() {
                                     fullWidth
                                     label="Nombre"
                                     size="small"
+                                    disabled={!!blog}
                                     value={data.name}
                                     inputProps={{ maxLength: 15 }}
-                                    onChange={({ target: { value } }) => setData((values) => ({ ...values, 'name': value }))}
+                                    onChange={({ target: { value } }) => {
+                                        if (!blog) setData((values) => ({ ...values, 'name': value }))
+                                    }}
                                 />
                             </Col>
                             <Col xs={12} lg={6}>
@@ -231,9 +260,12 @@ export default function EditorPage() {
                                     fullWidth
                                     label="Apellido"
                                     size="small"
+                                    disabled={!!blog?.author}
                                     value={data.lastName}
                                     inputProps={{ maxLength: 15 }}
-                                    onChange={({ target: { value } }) => setData((values) => ({ ...values, 'lastName': value }))}
+                                    onChange={({ target: { value } }) => {
+                                        if (!blog) setData((values) => ({ ...values, 'lastName': value }))
+                                    }}
                                 />
                             </Col>
                         </Row>
